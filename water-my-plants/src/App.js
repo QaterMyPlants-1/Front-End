@@ -1,9 +1,12 @@
 import React from "react";
-import "./App.css";
+import { Switch, Route } from "react-router-dom";
+
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Plants from './components/Plants';
+import PrivateRoute from './components/PrivateRoute';
 
-import { Switch, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
@@ -15,8 +18,9 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-        <Route path="/plants">
-          <h1>Plant page</h1>
+        {/*<PrivateRoute path="/plants" component={Plants} />*/}
+        <Route path='/plants'>
+          <Plants />
         </Route>
       </Switch>
     </div>
