@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addPlant } from "../actions/actions";
 
 const initialFormState = {
   //id: 0, //how to increment? server side?
@@ -9,7 +10,7 @@ const initialFormState = {
   image: "", //optional
 };
 
-const PlantForm = () => {
+const PlantForm = (props) => {
   const [formState, setFormState] = useState(initialFormState);
 
   const handleSubmit = (event) => {
@@ -17,7 +18,7 @@ const PlantForm = () => {
 
     // validation here
 
-    console.log(formState); // to test form output/submit values
+    props.addPlant(formState);
 
     setFormState(initialFormState); // reset form state if successful
   };
@@ -62,4 +63,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(PlantForm);
+export default connect(mapStateToProps, { addPlant })(PlantForm);

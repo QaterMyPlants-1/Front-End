@@ -33,7 +33,7 @@ export const fetchPlants = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_PLANTS_START });
     axiosWithAuth()
-      .get("/unkown")
+      .get("/unknown")
       .then((response) => {
         dispatch({ type: FETCH_PLANTS_SUCCESS, payload: response.data.data });
       })
@@ -43,8 +43,30 @@ export const fetchPlants = () => {
   };
 };
 
-export const addPlant = () => {
+export const addPlant = (plant) => {
   return (dispatch) => {
-    axiosWithAuth().post().then().catch();
+    dispatch({ type: ADD_PLANTS_START });
+    axiosWithAuth()
+      .post("/users", plant)
+      .then((response) => {
+        dispatch({ type: ADD_PLANT_SUCCESS, payload: response.data });
+      })
+      .catch((error) => {
+        dispatch({ type: ADD_PLANT_FAILURE, payload: error.message });
+      });
+  };
+};
+
+export const editPlant = (plant) => {
+  return (dispatch) => {
+    dispatch({ type: EDIT_PLANT_START });
+    axiosWithAuth()
+      .put(`/users/${plant.id}`, plant)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
