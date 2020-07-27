@@ -37,7 +37,7 @@ input {
   background-color: #f3f3f3;
   border: 0;
   border-radius: 4px;
-  margin-bottom: 31px;
+  margin-bottom: 2px;
   transition: all 250ms ease-in-out;
 }
 input:hover {
@@ -68,5 +68,10 @@ input:focus {
   background-color: #2386c8;
 }
 .btn:focus {
-  outline: none;
+  outline: not-allowed;
+}
+.btnDisable,
+.btnDisable:hover {
+  cursor: not-allowed;
+  background-color: grey;
 }
