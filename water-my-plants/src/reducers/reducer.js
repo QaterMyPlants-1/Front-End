@@ -1,31 +1,34 @@
-import {stuff} from '../actions/actions';
+import * as actions from "../actions/actions";
 
 const initialState = {
-
-    plants: [
-        {id: 0,
-        nickname: 'bob',
-        species: 'bobplanticus',
-        h2oFrequency: 'whenever he is chill'},
-        {id: 1,
-        nickname: 'sally',
-        species: 'sallyplanticus',
-        h2oFrequency: 'constantly needy',
-        image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg'}
-    ]
-
+  isLoading: false,
+  error: "",
+  plants: [],
 };
 
 export const reducer = (state = initialState, action) => {
-
-    switch(action.type) {
-
-        //cases
-        default:
-            return state;
-
-    };
-
+  switch (action.type) {
+    case actions.FETCH_PLANTS_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actions.FETCH_PLANTS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        plants: action.payload,
+        error: "",
+      };
+    case actions.FETCH_PLANTS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

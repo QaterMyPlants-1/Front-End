@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Plants from './components/Plants';
-import PrivateRoute from './components/PrivateRoute';
+import Plants from "./components/Plants";
+import PrivateRoute from "./components/PrivateRoute";
 
 import "./App.css";
 
@@ -19,7 +19,7 @@ function App() {
           <Signup />
         </Route>
         {/*<PrivateRoute path="/plants" component={Plants} />*/}
-        <Route path='/plants'>
+        <Route path="/plants">
           <Plants />
         </Route>
       </Switch>

@@ -70,3 +70,18 @@ input:focus {
 .btn:focus {
   outline: none;
 }
+
+.plant-form {
+  margin: 1% 2%;
+}
+
+.plant-wrapper {
+  border: 1px solid black;
+  width: 50%;
+  margin: 1.5% auto;
+}
+
+.plant-wrapper img {
+  max-width: 100%;
+  height: auto;
+}

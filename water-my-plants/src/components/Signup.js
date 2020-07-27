@@ -1,6 +1,8 @@
 import React from "react";
-import "./style.css";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/actions";
+import "./style.css";
 
 const initialFormValues = {
   username: "",
@@ -14,11 +16,10 @@ const intitalFormErrors = {
   number: "",
 };
 
-const initialUsers =[]
+const initialUsers = [];
 const intialDisable = true;
 
-
-export default function Signup(props) {
+function Signup(props) {
   return (
     <div className="base-container">
       <div className="image">
@@ -43,7 +44,7 @@ export default function Signup(props) {
         </div>
       </div>
       <div className="footer">
-        <button type="submit" className="btn">
+        <button onClick={() => registerUser()} type="submit" className="btn">
           Register
         </button>
         <p>Already have an account?</p>
@@ -52,3 +53,5 @@ export default function Signup(props) {
     </div>
   );
 }
+
+export default connect(null, { registerUser })(Signup);
