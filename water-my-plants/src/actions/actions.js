@@ -63,10 +63,10 @@ export const editPlant = (plant) => {
     axiosWithAuth()
       .put(`/users/${plant.id}`, plant)
       .then((response) => {
-        console.log(response);
+        dispatch({ type: EDIT_PLANT_SUCCESS, payload: {...response.data, id: plant.id}})
       })
       .catch((error) => {
-        console.log(error);
+        dispatch({ type: EDIT_PLANT_FAILURE, payload: error.message })
       });
   };
 };
