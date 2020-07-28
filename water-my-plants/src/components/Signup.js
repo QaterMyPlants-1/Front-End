@@ -1,5 +1,5 @@
+
 import React, { useState, useEffect } from "react";
-import "./style.css";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import signUp from "./validation/signUpForm";
@@ -123,6 +123,7 @@ export default function Signup() {
         </FormGroup>
         <FormGroup>
           <label htmlFor="number">Phone Number</label>
+
           <input
             type="tel"
             name="number"
@@ -150,3 +151,4 @@ export default function Signup() {
     </SignupContainer>
   );
 }
+
