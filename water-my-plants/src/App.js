@@ -25,12 +25,8 @@ function App() {
           <Signup />
         </Route>
         {/*<PrivateRoute path="/plants" component={Plants} />*/}
-        <Route path="/plants">
-          <Plants />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <PrivateRoute path="/plants" component={Plants} />
+        <PrivateRoute path="/profile" component={Profile} />
       </Switch>
     </div>
   );

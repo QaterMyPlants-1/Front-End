@@ -31,10 +31,10 @@ export default function Login() {
     axios
       .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.token);
 
-        setUsers([res.data, ...users]);
-        setFormValues(initialFormValues);
+        // save auth token to localStorage
+        localStorage.setItem("token", res.data.token);
         history.push("/plants");
       })
       .catch((err) => {
