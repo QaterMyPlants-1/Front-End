@@ -3,6 +3,9 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import signUp from "./validation/signUpForm";
+import axios from "axios";
+import { SignupContainer } from "./Signup.styles";
+import { FormContainer, FormGroup, Footer } from "./Global.style";
 
 const initialFormValues = {
   username: "",
@@ -16,16 +19,28 @@ const intitalFormErrors = {
   number: "",
 };
 
-const initialUsers = [];
+const initialSignUp = [];
 const initialDisabled = true;
 
 export default function Signup() {
-  const [users, setUsers] = useState(initialUsers);
+  const [register, setRegister] = useState(initialSignUp);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const signUpForm = (newForm) => {};
+  const signUpForm = (newForm) => {
+    console.log({ newForm });
+    axios
+      .post("https://watermyplants26.herokuapp.com/api/auth/register", newForm)
+      .then((res) => {
+        console.log(res);
+        setRegister([res.data, ...register]);
+        setFormValues(initialFormValues);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   //// FORM ACTIONS/////////
 
@@ -70,16 +85,13 @@ export default function Signup() {
     });
   }, [formValues]);
   return (
-    <div className="base-container" onSubmit={onSubmit}>
-      <div className="image">
-        <img
-          className="image"
-          src="https://acad.xlri.ac.in/evening/images/login.svg"
-          alt="illustrator of a person sitting on a chair"
-        ></img>
-      </div>
-      <div className="form">
-        <div className="form-group ">
+    <SignupContainer onSubmit={onSubmit}>
+      <img
+        src="https://acad.xlri.ac.in/evening/images/login.svg"
+        alt="illustrator of a person sitting on a chair"
+      ></img>
+      <FormContainer>
+        <FormGroup>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -93,8 +105,8 @@ export default function Signup() {
               {formErrors.username}
             </div>
           )}
-        </div>
-        <div className="form-group ">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -108,8 +120,8 @@ export default function Signup() {
               {formErrors.password}
             </div>
           )}
-        </div>
-        <div className="form-group">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="number">Phone Number</label>
           <input
             type="tel"
@@ -122,9 +134,9 @@ export default function Signup() {
               {formErrors.number}
             </div>
           )}
-        </div>
-      </div>
-      <div className="footer">
+        </FormGroup>
+      </FormContainer>
+      <Footer>
         <button
           type="submit"
           disabled={disabled}
@@ -134,7 +146,7 @@ export default function Signup() {
         </button>
         <p>Already have an account?</p>
         <Link to="/">Sign in here</Link>
-      </div>
-    </div>
+      </Footer>
+    </SignupContainer>
   );
 }

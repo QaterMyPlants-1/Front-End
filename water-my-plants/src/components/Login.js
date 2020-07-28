@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import "./style.css";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import formSchema from "./validation/formSchema";
+import { SignupContainer } from "./Signup.styles";
+import { FormContainer, FormGroup, Footer } from "./Global.style";
 import axios from "axios";
 
 const initialFormValues = {
@@ -27,16 +27,19 @@ export default function Login() {
 
   const history = useHistory();
   const loginNewUsers = (newUser) => {
-    // axios
-    //   .post("", newUser)
-    //   .then((res) => {
-    //     console.log(res);
-    //     setUsers([res.data, ...users]);
-    //     setFormValues(initialFormValues);
-    //     history.push("/plants");
-    //   })
-    //   .catch((err) => {});
-    history.push("/plants");
+    console.log(newUser);
+    axios
+      .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
+      .then((res) => {
+        console.log(res);
+
+        setUsers([res.data, ...users]);
+        setFormValues(initialFormValues);
+        history.push("/plants");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //// FORM ACTIONS/////////
@@ -82,16 +85,14 @@ export default function Login() {
   }, [formValues]);
 
   return (
-    <form className="base-container" onSubmit={onSubmit}>
-      <div>
-        <img
-          className="image"
-          src="https://acad.xlri.ac.in/evening/images/login.svg"
-          alt="illustrator of a person sitting on a chair"
-        ></img>
-      </div>
-      <div className="form">
-        <div className="form-group ">
+    <SignupContainer onSubmit={onSubmit}>
+      <img
+        className="image"
+        src="https://acad.xlri.ac.in/evening/images/login.svg"
+        alt="illustrator of a person sitting on a chair"
+      ></img>
+      <FormContainer>
+        <FormGroup>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -105,8 +106,8 @@ export default function Login() {
               {formErrors.username}
             </div>
           )}
-        </div>
-        <div className="form-group ">
+        </FormGroup>
+        <FormGroup>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -118,9 +119,9 @@ export default function Login() {
           {!!formErrors.password && (
             <div style={{ color: "red" }}> {formErrors.password} </div>
           )}
-        </div>
-      </div>
-      <div className="footer">
+        </FormGroup>
+      </FormContainer>
+      <Footer>
         <button
           type="submit"
           disabled={disabled}
@@ -130,7 +131,7 @@ export default function Login() {
         </button>
         <p>Don't have an account?</p>
         <Link to="/signup">Register Here</Link>
-      </div>
-    </form>
+      </Footer>
+    </SignupContainer>
   );
 }
