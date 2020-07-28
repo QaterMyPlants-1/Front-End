@@ -5,6 +5,8 @@ import formSchema from "./validation/formSchema";
 import { SignupContainer } from "./Signup.styles";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
 import axios from "axios";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/actions";
 
 const initialFormValues = {
   username: "",
@@ -19,7 +21,7 @@ const intitalFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
-export default function Login() {
+function Login(props) {
   const [users, setUsers] = useState(initialUsers);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
@@ -75,7 +77,9 @@ export default function Login() {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    loginNewUsers(newUser);
+    // loginNewUsers(newUser);
+    props.loginUser(newUser);
+    history.push("/plants");
   };
 
   useEffect(() => {
@@ -135,3 +139,11 @@ export default function Login() {
     </SignupContainer>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps, { loginUser })(Login);
