@@ -85,3 +85,15 @@ input:focus {
   max-width: 100%;
   height: auto;
 }
+
+nav {
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2.5%;
+}
+
+nav a {
+  margin: 0 2%;
+  text-decoration: none;
+}
