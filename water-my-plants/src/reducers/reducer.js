@@ -44,6 +44,32 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
+    case actions.EDIT_PLANT_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case actions.EDIT_PLANT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        plants: state.plants.map(item => {
+          if (item.id === action.payload.id) {
+              return action.payload
+          }
+          else {
+              return item;
+          }
+        })
+      };
+    case actions.EDIT_PLANT_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

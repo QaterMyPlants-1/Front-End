@@ -34,7 +34,7 @@ const Plant = (props) => {
             <button className='edit-plant-button' onClick={onEditClick}>Edit Plant</button>
             <button className='delete-plant-button' onClick={onDeleteClick}>Delete Plant</button>
         </div>}
-        {isEditing && <PlantForm toggleIsEditing={toggleIsEditing} isEditing={isEditing} plant={{id: props.key,
+        {isEditing && <PlantForm toggleIsEditing={toggleIsEditing} isEditing={isEditing} plant={{id: props.id,
                                                                nickname: props.nickname,
                                                                species: props.species,
                                                                h2oFrequency: props.h2oFrequency,
