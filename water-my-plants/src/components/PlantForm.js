@@ -11,19 +11,20 @@ const initialFormState = {
 };
 
 const PlantForm = (props) => {
-  const [formState, setFormState] = useState(props.isEditing?props.plant:initialFormState);
+  const [formState, setFormState] = useState(
+    props.isEditing ? props.plant : initialFormState
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // validation here
 
-    if(props.isEditing){
-        props.editPlant(formState);
-        props.toggleIsEditing();
-    }
-    else {
-        props.addPlant(formState);
+    if (props.isEditing) {
+      props.editPlant(formState);
+      props.toggleIsEditing();
+    } else {
+      props.addPlant(formState);
     }
 
     setFormState(initialFormState); // reset form state if successful
@@ -41,18 +42,21 @@ const PlantForm = (props) => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="nickname">Nickname:</label>
         <input
+          id="nickname"
           name="nickname"
           value={formState.nickname}
           onChange={handleChanges}
         />
         <label htmlFor="species">Species:</label>
         <input
+          id="species"
           name="species"
           value={formState.species}
           onChange={handleChanges}
         />
         <label htmlFor="h2oFrequency">Water Frequency:</label>
         <input
+          id="h20Frequency"
           name="h2oFrequency"
           value={formState.h2oFrequency}
           onChange={handleChanges}
