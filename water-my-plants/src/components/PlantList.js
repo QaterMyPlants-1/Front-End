@@ -13,9 +13,11 @@ const PlantList = (props) => {
     <div className="plant-list-wrapper">
       {props.plants.length > 0 &&
         props.plants.map((item) => {
+            console.log(item.id) // item.id of edited item is undef here
           return (
             <Plant
               key={item.id}
+              id={item.id}
               nickname={item.nickname}
               species={item.species}
               h2oFrequency={item.h2oFrequency}
