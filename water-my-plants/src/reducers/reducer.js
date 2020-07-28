@@ -4,28 +4,25 @@ const initialState = {
   isLoading: false,
   error: "",
   plants: [],
-  user: {
-    username: "emilio",
-    number: "1234567890",
-    password: "password",
-  },
+  user: {},
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.REGISTER_USER_START:
+    case actions.LOGIN_USER_START:
       return {
         ...state,
         isLoading: true,
       };
-    case actions.REGISTER_USER_SUCCESS:
+    case actions.LOGIN_USER_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         isLoading: false,
         user: action.payload,
         error: "",
       };
-    case actions.REGISTER_USER_FAILURE:
+    case actions.LOGIN_USER_FAILURE:
       return {
         ...state,
         isLoading: false,
