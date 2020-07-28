@@ -15,7 +15,9 @@ function App() {
       <nav>
         <Link to="/plants">Plants</Link>
         <Link to="/profile">Profile</Link>
-        <Link to="/logout">Logout</Link>
+        <Link to="/" onClick={() => localStorage.removeItem("token")}>
+          Logout
+        </Link>
       </nav>
       <Switch>
         <Route exact path="/">
