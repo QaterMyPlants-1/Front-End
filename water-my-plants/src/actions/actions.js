@@ -1,10 +1,11 @@
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
+import axios from "axios";
 
 // Action Types
 
-export const REGISTER_USER_START = "REGISTER_USER_START";
-export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
-export const REGISTER_USER_FAILURE = "REGISTER_USER_FAILURE";
+export const LOGIN_USER_START = "LOGIN_USER_START";
+export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 export const UPDATE_USER_START = "UPDATE_USER_START";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
@@ -24,18 +25,18 @@ export const DELETE_PLANT_FAILURE = "DELETE_PLANT_FAILURE";
 
 // Action Creators
 
-export const registerUser = (user) => {
+export const loginUser = (user) => {
   return (dispatch) => {
-    dispatch({ type: REGISTER_USER_START });
+    dispatch({ type: LOGIN_USER_START });
     axiosWithAuth()
-      .post("https://watermyplants26.herokuapp.com/register", user)
+      .post("/login", user)
       .then((response) => {
-        console.log(response);
-        // dispatch({ type: REGISTER_USER_SUCCESS, payload: response.data });
+        localStorage.setItem("token", response.data.token);
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.user });
       })
       .catch((error) => {
         console.log(error);
-        // dispatch({ type: REGISTER_USER_FAILURE, payload: error.message });
+        dispatch({ type: LOGIN_USER_FAILURE, payload: error.message });
       });
   };
 };
@@ -60,8 +61,8 @@ export const updateUser = (user) => {
 export const fetchPlants = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_PLANTS_START });
-    axiosWithAuth()
-      .get("/unknown")
+    axios
+      .get("https://reqres.in/api/unknown")
       .then((response) => {
         dispatch({ type: FETCH_PLANTS_SUCCESS, payload: response.data.data });
       })
@@ -74,8 +75,8 @@ export const fetchPlants = () => {
 export const addPlant = (plant) => {
   return (dispatch) => {
     dispatch({ type: ADD_PLANTS_START });
-    axiosWithAuth()
-      .post("/users", plant)
+    axios
+      .post("https://reqres.in/api/users", plant)
       .then((response) => {
         dispatch({ type: ADD_PLANT_SUCCESS, payload: response.data });
       })
@@ -88,8 +89,8 @@ export const addPlant = (plant) => {
 export const editPlant = (plant) => {
   return (dispatch) => {
     dispatch({ type: EDIT_PLANT_START });
-    axiosWithAuth()
-      .put(`/users/${plant.id}`, plant)
+    axios
+      .put(`https://reqres.in/api/users/${plant.id}`, plant)
       .then((response) => {
         dispatch({
           type: EDIT_PLANT_SUCCESS,
@@ -105,8 +106,8 @@ export const editPlant = (plant) => {
 export const deletePlant = (id) => {
   return (dispatch) => {
     dispatch({ type: DELETE_PLANT_START });
-    axiosWithAuth()
-      .delete(`/users/${id}`)
+    axios
+      .delete(`https://reqres.in/api/users/${id}`)
       .then((response) => {
         dispatch({ type: DELETE_PLANT_SUCCESS, payload: id });
       })

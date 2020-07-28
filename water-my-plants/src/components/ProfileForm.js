@@ -31,6 +31,7 @@ function ProfileForm(props) {
         <label htmlFor="password">Password:</label>
         <input
           id="password"
+          type="password"
           name="password"
           value={formState.password}
           onChange={handleChanges}

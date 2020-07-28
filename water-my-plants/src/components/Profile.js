@@ -20,7 +20,6 @@ function Profile(props) {
         <div className="profile-display">
           <h3>{props.user.username}</h3>
           <p>{props.user.number}</p>
-          <p>{props.user.password}</p>
           <button className="edit-profile-button" onClick={onEditClick}>
             Edit Profile
           </button>

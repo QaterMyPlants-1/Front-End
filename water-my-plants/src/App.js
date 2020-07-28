@@ -24,10 +24,10 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-        {/*<PrivateRoute path="/plants" component={Plants} />*/}
-        <Route path="/plants">
+        <PrivateRoute path="/plants" component={Plants} />
+        {/* <Route path="/plants">
           <Plants />
-        </Route>
+        </Route> */}
         <Route path="/profile">
           <Profile />
         </Route>
