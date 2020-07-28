@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
 import PlantForm from './PlantForm';
+import { connect } from "react-redux";
+import { deletePlant } from '../actions/actions';
 
 const Plant = (props) => {
 
@@ -20,7 +22,7 @@ const Plant = (props) => {
 
   const onDeleteClick = () => {
 
-
+    props.deletePlant(props.id);
 
   };
 
@@ -43,4 +45,10 @@ const Plant = (props) => {
   );
 };
 
-export default Plant;
+const mapStateToProps = (state) => {
+    return {
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, {deletePlant})(Plant);

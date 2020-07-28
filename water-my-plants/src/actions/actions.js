@@ -70,3 +70,17 @@ export const editPlant = (plant) => {
       });
   };
 };
+
+export const deletePlant = (id) => {
+    return (dispatch) => {
+        dispatch({ type: DELETE_PLANT_START });
+        axiosWithAuth()
+            .delete(`/users/${id}`)
+            .then((response) => {
+                dispatch({ type: DELETE_PLANT_SUCCESS, payload: id });
+            })
+            .catch((error) => {
+                dispatch({ type: DELETE_PLANT_FAILURE, payload: error.message });
+            });
+    };
+};

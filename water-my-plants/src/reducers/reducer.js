@@ -70,6 +70,29 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
+    case actions.DELETE_PLANT_START:
+        return {
+            ...state,
+            isLoading: true,
+            error: ""
+        };
+    case actions.DELETE_PLANT_SUCCESS:
+        return {
+            ...state,
+            isLoading: false,
+            error: "",
+            plants: state.plants.filter((item) => {
+                if (item.id !== action.payload) {
+                    return item;
+                };
+            })
+        };
+    case actions.DELETE_PLANT_FAILURE:
+        return {
+            ...state,
+            isLoading: false,
+            error: action.payload
+        };
     default:
       return state;
   }
