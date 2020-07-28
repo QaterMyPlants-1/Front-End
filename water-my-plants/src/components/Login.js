@@ -28,21 +28,21 @@ function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const history = useHistory();
-  const loginNewUsers = (newUser) => {
-    console.log(newUser);
-    axios
-      .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
-      .then((res) => {
-        console.log(res);
+  // const loginNewUsers = (newUser) => {
+  //   console.log(newUser);
+  //   axios
+  //     .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
+  //     .then((res) => {
+  //       console.log(res.data.token);
 
-        setUsers([res.data, ...users]);
-        setFormValues(initialFormValues);
-        history.push("/plants");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //       // save auth token to localStorage
+  //       localStorage.setItem("token", res.data.token);
+  //       history.push("/plants");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   //// FORM ACTIONS/////////
 
