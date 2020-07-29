@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addPlant, editPlant } from "../actions/actions";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
+import { PlantFormWrapper } from './PlantForm.style';
+
 const initialFormState = {
   //id: 0, //how to increment? server side?
   name: "",
@@ -39,33 +41,35 @@ const PlantForm = (props) => {
 
   return (
     <FormContainer>
-      <FormGroup onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          name="name"
-          value={formState.name}
-          onChange={handleChanges}
-        />
-        <label htmlFor="species">Species:</label>
-        <input
-          id="species"
-          name="species"
-          value={formState.species}
-          onChange={handleChanges}
-        />
-        <label htmlFor="h2oFrequency">Water Frequency:</label>
-        <input
-          id="h2oFrequency"
-          name="h2oFrequency"
-          value={formState.h2oFrequency}
-          onChange={handleChanges}
-        />
-        <Footer>
-          <button className="btn" type="submit">
-            Submit
-          </button>
-        </Footer>
+      <FormGroup>
+        <PlantFormWrapper onSubmit={handleSubmit}>
+          <label htmlFor="name">Name:</label>
+          <input
+            id="name"
+            name="name"
+            value={formState.name}
+            onChange={handleChanges}
+          />
+          <label htmlFor="species">Species:</label>
+          <input
+            id="species"
+            name="species"
+            value={formState.species}
+            onChange={handleChanges}
+          />
+          <label htmlFor="h2oFrequency">Water Frequency:</label>
+          <input
+            id="h2oFrequency"
+            name="h2oFrequency"
+            value={formState.h2oFrequency}
+            onChange={handleChanges}
+          />
+          <Footer>
+            <button className="btn" type="submit">
+              Submit
+            </button>
+          </Footer>
+        </PlantFormWrapper>
       </FormGroup>
     </FormContainer>
   );
