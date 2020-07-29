@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ProfileForm from "./ProfileForm";
 import { connect } from "react-redux";
+import { fetchUser } from "../actions/actions";
 import{ ProfileWrapper, ProfileDisplay} from './Profile.style'
 
 function Profile(props) {
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    props.fetchUser(props.user);
+  }, []);
 
   const toggleIsEditing = () => {
     setIsEditing(!isEditing);
@@ -27,10 +32,7 @@ function Profile(props) {
         </ProfileDisplay>
       )}
       {isEditing && (
-        <ProfileForm
-          toggleIsEditing={toggleIsEditing}
-          isEditing={isEditing}
-        />
+        <ProfileForm toggleIsEditing={toggleIsEditing} isEditing={isEditing} />
       )}
     </ProfileWrapper>
   );
@@ -42,4 +44,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Profile);
+export default connect(mapStateToProps, { fetchUser })(Profile);

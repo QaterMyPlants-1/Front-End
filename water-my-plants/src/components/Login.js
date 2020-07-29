@@ -25,7 +25,7 @@ function Login(props) {
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   //// FORM ACTIONS/////////
 
@@ -56,7 +56,6 @@ function Login(props) {
   };
 
   const onSubmit = (evt) => {
-
     evt.preventDefault();
 
     const newUser = {
@@ -66,7 +65,6 @@ function Login(props) {
     
     props.loginUser(newUser)
     .then(response => push('/plants'));
-
   };
 
   useEffect(() => {
