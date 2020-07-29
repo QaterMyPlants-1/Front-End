@@ -9,6 +9,7 @@ const PlantList = (props) => {
     props.fetchPlants();
   }, []);
 
+
   return (
     <div className="plant-list-wrapper">
       {props.plants.length > 0 &&
@@ -17,7 +18,7 @@ const PlantList = (props) => {
             <Plant
               key={item.id}
               id={item.id}
-              nickname={item.nickname}
+              name={item.name}
               species={item.species}
               h2oFrequency={item.h2oFrequency}
               image={item.image}

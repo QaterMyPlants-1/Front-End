@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addPlant, editPlant } from "../actions/actions";
+import { FormContainer, FormGroup, Footer } from "./Global.style";
+import { PlantFormWrapper } from './PlantForm.style';
 
 const initialFormState = {
   //id: 0, //how to increment? server side?
@@ -11,23 +13,34 @@ const initialFormState = {
 };
 
 const PlantForm = (props) => {
+
   const [formState, setFormState] = useState(
     props.isEditing ? props.plant : initialFormState
   );
+
+  const [formError, setFormError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // validation here
 
-    if (props.isEditing) {
-      props.editPlant(formState);
-      props.toggleIsEditing();
-    } else {
-      props.addPlant(formState);
+    if (formState.name !== "" && formState.species !== "" && formState.h2oFrequency !== "") {
+      setFormError(false);
+      if (props.isEditing) {
+        props.editPlant(formState);
+        props.toggleIsEditing();
+      } else {
+        props.addPlant(formState);
+      }
+  
+      setFormState(initialFormState); // reset form state if successful
+    }
+    else {
+      setFormError(true);
     }
 
-    setFormState(initialFormState); // reset form state if successful
+
   };
 
   const handleChanges = (event) => {
@@ -38,32 +51,39 @@ const PlantForm = (props) => {
   };
 
   return (
-    <div className="plant-form">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          name="name"
-          value={formState.name}
-          onChange={handleChanges}
-        />
-        <label htmlFor="species">Species:</label>
-        <input
-          id="species"
-          name="species"
-          value={formState.species}
-          onChange={handleChanges}
-        />
-        <label htmlFor="h2oFrequency">Water Frequency:</label>
-        <input
-          id="h2oFrequency"
-          name="h2oFrequency"
-          value={formState.h2oFrequency}
-          onChange={handleChanges}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <FormContainer>
+      <FormGroup>
+        <PlantFormWrapper onSubmit={handleSubmit}>
+          <label htmlFor="name">Name:</label>
+          <input
+            id="name"
+            name="name"
+            value={formState.name}
+            onChange={handleChanges}
+          />
+          <label htmlFor="species">Species:</label>
+          <input
+            id="species"
+            name="species"
+            value={formState.species}
+            onChange={handleChanges}
+          />
+          <label htmlFor="h2oFrequency">Water Frequency:</label>
+          <input
+            id="h2oFrequency"
+            name="h2oFrequency"
+            value={formState.h2oFrequency}
+            onChange={handleChanges}
+          />
+          <Footer>
+            {formError && <p>Please enter values for all fields.</p>}
+            <button className="btn" type="submit">
+              Submit
+            </button>
+          </Footer>
+        </PlantFormWrapper>
+      </FormGroup>
+    </FormContainer>
   );
 };
 

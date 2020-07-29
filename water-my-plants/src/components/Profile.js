@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ProfileForm from "./ProfileForm";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions/actions";
+import{ ProfileWrapper, ProfileDisplay} from './Profile.style'
 
 function Profile(props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,20 +21,20 @@ function Profile(props) {
   };
 
   return (
-    <div className="profile-wrapper">
+    <ProfileWrapper>
       {!isEditing && (
-        <div className="profile-display">
+        <ProfileDisplay>
           <h3>{props.user.username}</h3>
           <p>{props.user.number}</p>
           <button className="edit-profile-button" onClick={onEditClick}>
             Edit Profile
           </button>
-        </div>
+        </ProfileDisplay>
       )}
       {isEditing && (
         <ProfileForm toggleIsEditing={toggleIsEditing} isEditing={isEditing} />
       )}
-    </div>
+    </ProfileWrapper>
   );
 }
 
