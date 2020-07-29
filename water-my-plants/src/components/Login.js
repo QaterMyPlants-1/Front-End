@@ -17,7 +17,6 @@ const intitalFormErrors = {
   password: "",
 };
 
-const initialUsers = [];
 const initialDisabled = true;
 
 function Login(props) {
@@ -25,7 +24,7 @@ function Login(props) {
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   //// FORM ACTIONS/////////
 
@@ -56,17 +55,14 @@ function Login(props) {
   };
 
   const onSubmit = (evt) => {
-
     evt.preventDefault();
 
     const newUser = {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    
-    props.loginUser(newUser)
-    .then(response => push('/plants'));
 
+    props.loginUser(newUser).then((response) => push("/plants"));
   };
 
   useEffect(() => {

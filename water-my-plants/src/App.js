@@ -1,5 +1,11 @@
 import React from "react";
+
+import { connect } from "react-redux";
+import { logoutUser } from "./actions/actions";
+
+
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Plants from "./components/Plants";
@@ -8,30 +14,42 @@ import PrivateRoute from "./components/PrivateRoute";
 import { NavBar } from './components/NavBar.style'
 import "./App.css";
 
-function App() {
+function App(props) {
   return (
-    <Router>
-      <div className="App">
-        <NavBar>
-          <Link to="/plants">Plants</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/" onClick={() => localStorage.removeItem("token")}>
+  <Router>
+    <div className="App">
+      <NavBar>
+        {props.isLoggedIn && <Link to="/plants">Plants</Link>}
+        {props.isLoggedIn && <Link to="/profile">Profile</Link>}
+        {props.isLoggedIn && (
+          <Link to="/" onClick={props.logoutUser}>
             Logout
           </Link>
-        </NavBar>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <PrivateRoute path="/plants" component={Plants} />
-          <PrivateRoute path="/profile" component={Profile} />
-        </Switch>
-      </div>
-    </Router>
+        )}
+        {!props.isLoggedIn && <Link to="/login">Login</Link>}
+      </NavBar>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <PrivateRoute path="/plants" component={Plants} />
+        <PrivateRoute path="/profile" component={Profile} />
+      </Switch>
+    </div>
+  </Router>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps, { logoutUser })(App);

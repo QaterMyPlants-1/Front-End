@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import signUp from "./validation/signUpForm";
 import axios from "axios";
@@ -18,22 +18,19 @@ const intitalFormErrors = {
   number: "",
 };
 
-const initialSignUp = [];
 const initialDisabled = true;
 
 export default function Signup() {
-  const [register, setRegister] = useState(initialSignUp);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
+  const { push } = useHistory();
+
   const signUpForm = (newForm) => {
-    console.log({ newForm });
     axios
       .post("https://watermyplants26.herokuapp.com/api/auth/register", newForm)
       .then((res) => {
-        console.log(res);
-        setRegister([res.data, ...register]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
@@ -76,6 +73,7 @@ export default function Signup() {
       number: formValues.number.trim(),
     };
     signUpForm(newForm);
+    push("/");
   };
 
   useEffect(() => {

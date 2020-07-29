@@ -5,31 +5,39 @@ import { FormContainer, FormGroup, Footer } from "./Global.style";
 import { PlantFormWrapper } from './PlantForm.style';
 
 const initialFormState = {
-  //id: 0, //how to increment? server side?
   name: "",
   species: "",
-  h2oFrequency: "", //how to implement?
-  image: "", //optional
+  h2oFrequency: "",
+  image: "",
 };
 
 const PlantForm = (props) => {
+
   const [formState, setFormState] = useState(
     props.isEditing ? props.plant : initialFormState
   );
 
+  const [formError, setFormError] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // validation here
-
-    if (props.isEditing) {
-      props.editPlant(formState);
-      props.toggleIsEditing();
-    } else {
-      props.addPlant(formState);
+    if (formState.name !== "" && formState.species !== "" && formState.h2oFrequency !== "") {
+      setFormError(false);
+      if (props.isEditing) {
+        props.editPlant(formState);
+        props.toggleIsEditing();
+      } else {
+        props.addPlant(formState);
+      }
+  
+      setFormState(initialFormState);
+    }
+    else {
+      setFormError(true);
     }
 
-    setFormState(initialFormState); // reset form state if successful
+
   };
 
   const handleChanges = (event) => {
@@ -66,6 +74,7 @@ const PlantForm = (props) => {
             onChange={handleChanges}
           />
           <Footer>
+            {formError && <p>Please enter values for all fields.</p>}
             <button className="btn" type="submit">
               Submit
             </button>
