@@ -4,7 +4,7 @@ import { addPlant, editPlant } from "../actions/actions";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
 const initialFormState = {
   //id: 0, //how to increment? server side?
-  nickname: "",
+  name: "",
   species: "",
   h2oFrequency: "", //how to implement?
   image: "", //optional
@@ -40,11 +40,11 @@ const PlantForm = (props) => {
   return (
     <FormContainer>
       <FormGroup onSubmit={handleSubmit}>
-        <label htmlFor="nickname">Nickname:</label>
+        <label htmlFor="name">Name:</label>
         <input
-          id="nickname"
-          name="nickname"
-          value={formState.nickname}
+          id="name"
+          name="name"
+          value={formState.name}
           onChange={handleChanges}
         />
         <label htmlFor="species">Species:</label>
@@ -56,7 +56,7 @@ const PlantForm = (props) => {
         />
         <label htmlFor="h2oFrequency">Water Frequency:</label>
         <input
-          id="h20Frequency"
+          id="h2oFrequency"
           name="h2oFrequency"
           value={formState.h2oFrequency}
           onChange={handleChanges}

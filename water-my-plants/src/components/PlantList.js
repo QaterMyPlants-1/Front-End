@@ -19,7 +19,7 @@ const PlantList = (props) => {
             <Plant
               key={item.id}
               id={item.id}
-              nickname={item.nickname}
+              name={item.name}
               species={item.species}
               h2oFrequency={item.h2oFrequency}
               image={item.image}

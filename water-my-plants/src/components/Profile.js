@@ -30,7 +30,6 @@ function Profile(props) {
         <ProfileForm
           toggleIsEditing={toggleIsEditing}
           isEditing={isEditing}
-          user={{ number: props.user.number, password: props.user.password }}
         />
       )}
     </ProfileWrapper>

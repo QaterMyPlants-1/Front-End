@@ -4,7 +4,7 @@ import { updateUser } from "../actions/actions";
 import {FormContainer, FormGroup} from './Global.style'
 
 function ProfileForm(props) {
-  const [formState, setFormState] = useState(props.isEditing ? props.user : {});
+  const [formState, setFormState] = useState({...props.user,/* currentPassword: "",*/ password: ""});
 
   const handleChanges = (event) => {
     setFormState({
@@ -15,7 +15,7 @@ function ProfileForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.updateUser(formState);
+    props.updateUser(formState); // come back to this when state/render is correct
     props.toggleIsEditing();
   };
 
@@ -29,7 +29,15 @@ function ProfileForm(props) {
           value={formState.number}
           onChange={handleChanges}
         />
-        <label htmlFor="password">Password:</label>
+        {/*<label htmlFor="currentPassword">Current Password:</label>
+        <input
+          id="currentPassword"
+          type="password"
+          name="currentPassword"
+          value={formState.currentPassword}
+          onChange={handleChanges}
+  />*/}
+        <label htmlFor="newPassword">New Password:</label>
         <input
           id="password"
           type="password"
@@ -46,6 +54,7 @@ function ProfileForm(props) {
 const mapStateToProps = (state) => {
   return {
     error: state.error,
+    user: state.user
   };
 };
 
