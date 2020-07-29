@@ -24,13 +24,11 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-        <PrivateRoute path="/plants" component={Plants} />
+        <PrivateRoute exact path="/plants" component={Plants} />
         {/* <Route path="/plants">
           <Plants />
         </Route> */}
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <PrivateRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>
   );
