@@ -13,23 +13,34 @@ const initialFormState = {
 };
 
 const PlantForm = (props) => {
+
   const [formState, setFormState] = useState(
     props.isEditing ? props.plant : initialFormState
   );
+
+  const [formError, setFormError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // validation here
 
-    if (props.isEditing) {
-      props.editPlant(formState);
-      props.toggleIsEditing();
-    } else {
-      props.addPlant(formState);
+    if (formState.name !== "" && formState.species !== "" && formState.h2oFrequency !== "") {
+      setFormError(false);
+      if (props.isEditing) {
+        props.editPlant(formState);
+        props.toggleIsEditing();
+      } else {
+        props.addPlant(formState);
+      }
+  
+      setFormState(initialFormState); // reset form state if successful
+    }
+    else {
+      setFormError(true);
     }
 
-    setFormState(initialFormState); // reset form state if successful
+
   };
 
   const handleChanges = (event) => {
@@ -65,6 +76,7 @@ const PlantForm = (props) => {
             onChange={handleChanges}
           />
           <Footer>
+            {formError && <p>Please enter values for all fields.</p>}
             <button className="btn" type="submit">
               Submit
             </button>
