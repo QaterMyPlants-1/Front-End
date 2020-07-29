@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import formSchema from "./validation/formSchema";
-import { SignupContainer } from "./Signup.styles";
+import { LoginContainer } from "./Login.style";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/actions";
@@ -76,7 +76,7 @@ function Login(props) {
   }, [formValues]);
 
   return (
-    <SignupContainer onSubmit={onSubmit}>
+    <LoginContainer onSubmit={onSubmit}>
       <img
         className="image"
         src="https://acad.xlri.ac.in/evening/images/login.svg"
@@ -123,7 +123,7 @@ function Login(props) {
         <p>Don't have an account?</p>
         <Link to="/signup">Register Here </Link>
       </Footer>
-    </SignupContainer>
+    </LoginContainer>
   );
 }
 

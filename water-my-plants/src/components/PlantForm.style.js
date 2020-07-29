@@ -1,5 +1,4 @@
-
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const PlantFormWrapper = styled.form`
   display: flex;
@@ -8,12 +7,12 @@ export const PlantFormWrapper = styled.form`
   width: fit-content;
 
   input {
-    margin-top:9px;
+    margin-top: 9px;
     min-width: 20em;
     height: 40px;
     padding: 0px 10px;
     font-size: 1rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans Condensed", sans-serif;
     background-color: #f3f3f3;
     border: 0;
     border-radius: 4px;
@@ -40,12 +39,13 @@ export const PlantWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+  font-family: "Playfair Display";
   font-size: 18px;
   margin: 1%;
   padding: 5px 20px;
   border: 0;
-  background-color: gray;
-  color: #fff;
+  background-color: #757C57;
+  color: #FFF9EF;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
 `;

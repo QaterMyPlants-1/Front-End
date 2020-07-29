@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  margin-top: .5em;
+  margin-top: 0.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +14,12 @@ export const FormGroup = styled.div`
   width: fit-content;
 
   input {
-    margin-top:9px;
+    margin-top: 9px;
     min-width: 20em;
     height: 40px;
     padding: 0px 10px;
     font-size: 1rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans Consensed", sans-serif;
     background-color: #f3f3f3;
     border: 0;
     border-radius: 4px;
@@ -38,14 +38,18 @@ export const FormGroup = styled.div`
 `;
 
 export const Footer = styled.div`
-  .footer {
-    margin-top: 1em;
-  }
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .btn {
+    font-family: "Playfair Display";
+    width: 200px;
     font-size: 20px;
-    margin: 15%;
-    padding: 5px 30px;
+    padding: 6px 30px;
     border: 0;
     background-color: #3498db;
     color: #fff;
@@ -65,7 +69,6 @@ export const Footer = styled.div`
     background-color: grey;
   }
   p {
-    font-family: "Open Sans", sans-serif;
-  
+    font-family: "Playfair Display", "Open Sans Condensed", sans-serif;
   }
 `;
