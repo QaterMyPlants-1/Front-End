@@ -11,14 +11,14 @@ import Signup from "./components/Signup";
 import Plants from "./components/Plants";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
-import {NavBar} from './components/Login.style'
+import { NavBar } from './components/NavBar.style'
 import "./App.css";
 
 function App(props) {
   return (
   <Router>
     <div className="App">
-      <nav>
+      <NavBar>
         {props.isLoggedIn && <Link to="/plants">Plants</Link>}
         {props.isLoggedIn && <Link to="/profile">Profile</Link>}
         {props.isLoggedIn && (
@@ -27,7 +27,7 @@ function App(props) {
           </Link>
         )}
         {!props.isLoggedIn && <Link to="/login">Login</Link>}
-      </nav>
+      </NavBar>
       <Switch>
         <Route exact path="/">
           <Login />

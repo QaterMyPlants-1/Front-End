@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { updateUser } from "../actions/actions";
-import {FormContainer, FormGroup} from './Global.style'
+import { FormContainer, FormGroup, Footer } from "./Global.style";
 
 function ProfileForm(props) {
+
   const [formState, setFormState] = useState({...props.user, password: ""});
   const [formError, setFormError] = useState(false);
 
@@ -46,7 +47,9 @@ function ProfileForm(props) {
             onChange={handleChanges}
           />
           {formError && <p>Please enter values for all fields.</p>}
+        <Footer>
           <button type="submit">Save Changes</button>
+        </Footer>
         </form>
       </FormGroup>
     </FormContainer>
@@ -56,7 +59,7 @@ function ProfileForm(props) {
 const mapStateToProps = (state) => {
   return {
     error: state.error,
-    user: state.user
+    user: state.user,
   };
 };
 
