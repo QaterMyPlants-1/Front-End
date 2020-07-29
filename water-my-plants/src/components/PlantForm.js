@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addPlant, editPlant } from "../actions/actions";
-
+import { FormContainer, FormGroup, Footer } from "./Global.style";
 const initialFormState = {
   //id: 0, //how to increment? server side?
   name: "",
@@ -38,8 +38,8 @@ const PlantForm = (props) => {
   };
 
   return (
-    <div className="plant-form">
-      <form onSubmit={handleSubmit}>
+    <FormContainer>
+      <FormGroup onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
           id="name"
@@ -61,9 +61,13 @@ const PlantForm = (props) => {
           value={formState.h2oFrequency}
           onChange={handleChanges}
         />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+        <Footer>
+          <button className="btn" type="submit">
+            Submit
+          </button>
+        </Footer>
+      </FormGroup>
+    </FormContainer>
   );
 };
 

@@ -5,7 +5,7 @@ import Signup from "./components/Signup";
 import Plants from "./components/Plants";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
-
+import {NavBar} from './components/Login.style'
 import "./App.css";
 
 function App() {

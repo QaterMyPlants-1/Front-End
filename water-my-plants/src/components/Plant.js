@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import PlantForm from "./PlantForm";
 import { connect } from "react-redux";
 import { deletePlant } from "../actions/actions";
+import {PlantWrapper, Button} from './PlantForm.style'
 
 const Plant = (props) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,19 +21,19 @@ const Plant = (props) => {
   };
 
   return (
-    <div className="plant-wrapper">
+    <PlantWrapper>
       {!isEditing && (
         <div className="plant-display">
           <p>{props.name}</p>
           <p>{props.species}</p>
           <p>{props.h2oFrequency}</p>
           {props.image && <img src={props.image} alt={props.species} />}
-          <button className="edit-plant-button" onClick={onEditClick}>
+          <Button onClick={onEditClick}>
             Edit Plant
-          </button>
-          <button className="delete-plant-button" onClick={onDeleteClick}>
+          </Button>
+          <Button onClick={onDeleteClick}>
             Delete Plant
-          </button>
+          </Button>
         </div>
       )}
       {isEditing && (
@@ -48,7 +49,7 @@ const Plant = (props) => {
           }}
         />
       )}
-    </div>
+    </PlantWrapper>
   );
 };
 
