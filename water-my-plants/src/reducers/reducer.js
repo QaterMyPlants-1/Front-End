@@ -1,6 +1,7 @@
 import * as actions from "../actions/actions";
 
 const initialState = {
+  isLoggedIn: false,
   isLoading: false,
   error: "",
   plants: [],
@@ -15,14 +16,38 @@ export const reducer = (state = initialState, action) => {
         isLoading: true,
       };
     case actions.LOGIN_USER_SUCCESS:
-      console.log(action.payload);
+      return {
+        ...state,
+        isLoggedIn: true,
+        isLoading: false,
+        user: action.payload,
+        error: "",
+      };
+    case actions.LOGIN_USER_FAILURE:
+      return {
+        ...state,
+        isLoggedIn: false,
+        isLoading: false,
+        error: action.payload,
+      };
+    case actions.LOGOUT_USER:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    case actions.FETCH_USER_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actions.FETCH_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         user: action.payload,
         error: "",
       };
-    case actions.LOGIN_USER_FAILURE:
+    case actions.FETCH_USER_FAILURE:
       return {
         ...state,
         isLoading: false,

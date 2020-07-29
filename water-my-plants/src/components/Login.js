@@ -27,7 +27,7 @@ function Login(props) {
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   //// FORM ACTIONS/////////
 
@@ -56,18 +56,15 @@ function Login(props) {
     });
   };
 
-  const onSubmit = async (evt) => {
-
+  const onSubmit = (evt) => {
     evt.preventDefault();
 
     const newUser = {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    
-    await props.loginUser(newUser);
-    push("/plants");
 
+    props.loginUser(newUser, push);
   };
 
   useEffect(() => {

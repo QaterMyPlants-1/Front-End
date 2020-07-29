@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { logoutUser } from "./actions/actions";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -9,15 +11,18 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import "./App.css";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <nav>
-        <Link to="/plants">Plants</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/" onClick={() => localStorage.removeItem}>
-          Logout
-        </Link>
+        {props.isLoggedIn && <Link to="/plants">Plants</Link>}
+        {props.isLoggedIn && <Link to="/profile">Profile</Link>}
+        {props.isLoggedIn && (
+          <Link to="/" onClick={props.logoutUser}>
+            Logout
+          </Link>
+        )}
+        {!props.isLoggedIn && <Link to="/login">Login</Link>}
       </nav>
       <Switch>
         <Route exact path="/">
@@ -25,6 +30,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <Signup />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
         {/*<PrivateRoute path="/plants" component={Plants} />*/}
         <PrivateRoute path="/plants" component={Plants} />
@@ -34,4 +42,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps, { logoutUser })(App);
