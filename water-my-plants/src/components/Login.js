@@ -122,7 +122,7 @@ function Login(props) {
           Login
         </button>
         <p>Don't have an account?</p>
-        <Link to="/signup">Register Here</Link>
+        <Link to="/signup">Register Here </Link>
       </Footer>
     </SignupContainer>
   );

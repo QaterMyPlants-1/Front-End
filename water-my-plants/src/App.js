@@ -15,7 +15,7 @@ function App() {
       <nav>
         <Link to="/plants">Plants</Link>
         <Link to="/profile">Profile</Link>
-        <Link to="/" onClick={() => localStorage.removeItem("token")}>
+        <Link to="/" onClick={() => localStorage.removeItem}>
           Logout
         </Link>
       </nav>

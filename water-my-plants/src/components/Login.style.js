@@ -6,6 +6,7 @@ export const LoginContainer = styled.form`
   flex-direction: column;
   align-items: center;
   img {
-    height: 200px;
+    height: 250px;
+    margin: 5%;
   }
 `;
