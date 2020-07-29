@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import formSchema from "./validation/formSchema";
 import { SignupContainer } from "./Signup.styles";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
-import axios from "axios";
+//import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/actions";
 
@@ -22,27 +22,12 @@ const initialUsers = [];
 const initialDisabled = true;
 
 function Login(props) {
-  const [users, setUsers] = useState(initialUsers);
+  //const [users, setUsers] = useState(initialUsers);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const history = useHistory();
-  // const loginNewUsers = (newUser) => {
-  //   console.log(newUser);
-  //   axios
-  //     .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
-  //     .then((res) => {
-  //       console.log(res.data.token);
-
-  //       // save auth token to localStorage
-  //       localStorage.setItem("token", res.data.token);
-  //       history.push("/plants");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const {push} = useHistory();
 
   //// FORM ACTIONS/////////
 
@@ -71,15 +56,18 @@ function Login(props) {
     });
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = async (evt) => {
+
     evt.preventDefault();
+
     const newUser = {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    // loginNewUsers(newUser);
-    props.loginUser(newUser);
-    history.push("/plants");
+    
+    await props.loginUser(newUser);
+    push("/plants");
+
   };
 
   useEffect(() => {
