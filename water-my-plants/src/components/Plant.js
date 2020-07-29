@@ -23,7 +23,7 @@ const Plant = (props) => {
     <div className="plant-wrapper">
       {!isEditing && (
         <div className="plant-display">
-          <p>{props.nickname}</p>
+          <p>{props.name}</p>
           <p>{props.species}</p>
           <p>{props.h2oFrequency}</p>
           {props.image && <img src={props.image} alt={props.species} />}
@@ -41,7 +41,7 @@ const Plant = (props) => {
           isEditing={isEditing}
           plant={{
             id: props.id,
-            nickname: props.nickname,
+            name: props.name,
             species: props.species,
             h2oFrequency: props.h2oFrequency,
             image: props.image,

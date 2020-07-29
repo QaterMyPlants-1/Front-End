@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
-import axios from "axios";
 
 // Action Types
 
@@ -26,25 +25,27 @@ export const DELETE_PLANT_FAILURE = "DELETE_PLANT_FAILURE";
 // Action Creators
 
 export const loginUser = (user) => {
+
   return (dispatch) => {
+    console.log('anything');
     dispatch({ type: LOGIN_USER_START });
-    axiosWithAuth()
-      .post("/auth/login", user)
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.user });
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch({ type: LOGIN_USER_FAILURE, payload: error.message });
-      });
+    return axiosWithAuth()
+          .post("/auth/login", user)
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.user });
+            
+          })
+          .catch((error) => {
+            console.log(error);
+            dispatch({ type: LOGIN_USER_FAILURE, payload: error.message });
+          });
   };
 };
 
 export const updateUser = (user) => {
   return (dispatch) => {
     dispatch({ type: UPDATE_USER_START });
-    //dispatch({ type: UPDATE_USER_SUCCESS, payload: user });
      axiosWithAuth()
        .put(`/users/${user.id}`, user)
        .then((response) => {
