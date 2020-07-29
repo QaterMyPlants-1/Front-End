@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  margin-top: 2em;
+  margin-top: .5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,9 +14,9 @@ export const FormGroup = styled.div`
   width: fit-content;
 
   input {
-    margin-top: 6px;
-    min-width: 18em;
-    height: 37px;
+    margin-top:9px;
+    min-width: 20em;
+    height: 40px;
     padding: 0px 10px;
     font-size: 1rem;
     font-family: "Open Sans", sans-serif;
@@ -45,7 +45,7 @@ export const Footer = styled.div`
   .btn {
     font-size: 20px;
     margin: 15%;
-    padding: 2px 20px;
+    padding: 5px 30px;
     border: 0;
     background-color: #3498db;
     color: #fff;
@@ -66,5 +66,6 @@ export const Footer = styled.div`
   }
   p {
     font-family: "Open Sans", sans-serif;
+  
   }
 `;
