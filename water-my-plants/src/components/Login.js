@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import formSchema from "./validation/formSchema";
 import { SignupContainer } from "./Signup.styles";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
-//import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/actions";
 
@@ -22,7 +21,6 @@ const initialUsers = [];
 const initialDisabled = true;
 
 function Login(props) {
-  //const [users, setUsers] = useState(initialUsers);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -35,6 +33,7 @@ function Login(props) {
     const { name, value } = event.target;
     inputChange(name, value);
   };
+
   const inputChange = (name, value) => {
     Yup.reach(formSchema, name)
       .validate(value)
@@ -56,7 +55,7 @@ function Login(props) {
     });
   };
 
-  const onSubmit = async (evt) => {
+  const onSubmit = (evt) => {
 
     evt.preventDefault();
 
@@ -65,8 +64,8 @@ function Login(props) {
       password: formValues.password.trim(),
     };
     
-    await props.loginUser(newUser);
-    push("/plants");
+    props.loginUser(newUser)
+    .then(response => push('/plants'));
 
   };
 
