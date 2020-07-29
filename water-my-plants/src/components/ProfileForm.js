@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { updateUser } from "../actions/actions";
 import { FormContainer, FormGroup, Footer } from "./Global.style";
+import { ProfileFormWrapper } from './ProfileForm.style';
 
 function ProfileForm(props) {
 
@@ -30,7 +31,7 @@ function ProfileForm(props) {
   return (
     <FormContainer>
       <FormGroup>
-        <form onSubmit={handleSubmit}>
+        <ProfileFormWrapper onSubmit={handleSubmit}>
           <label htmlFor="number">Phone Number:</label>
           <input
             id="number"
@@ -47,10 +48,10 @@ function ProfileForm(props) {
             onChange={handleChanges}
           />
           {formError && <p>Please enter values for all fields.</p>}
-        <Footer>
-          <button type="submit">Save Changes</button>
-        </Footer>
-        </form>
+          <Footer>
+            <button type="submit">Save Changes</button>
+          </Footer>
+        </ProfileFormWrapper>
       </FormGroup>
     </FormContainer>
   );
