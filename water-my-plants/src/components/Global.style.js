@@ -44,6 +44,7 @@ export const Footer = styled.div`
 
   .btn {
     font-size: 20px;
+    margin: 15%;
     padding: 2px 20px;
     border: 0;
     background-color: #3498db;

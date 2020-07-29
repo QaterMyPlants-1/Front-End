@@ -15,7 +15,9 @@ function App() {
       <nav>
         <Link to="/plants">Plants</Link>
         <Link to="/profile">Profile</Link>
-        <Link to="/logout">Logout</Link>
+        <Link to="/" onClick={() => localStorage.removeItem("token")}>
+          Logout
+        </Link>
       </nav>
       <Switch>
         <Route exact path="/">
@@ -24,11 +26,9 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
-        <PrivateRoute exact path="/plants" component={Plants} />
-        {/* <Route path="/plants">
-          <Plants />
-        </Route> */}
-        <PrivateRoute exact path="/profile" component={Profile} />
+        {/*<PrivateRoute path="/plants" component={Plants} />*/}
+        <PrivateRoute path="/plants" component={Plants} />
+        <PrivateRoute path="/profile" component={Profile} />
       </Switch>
     </div>
   );

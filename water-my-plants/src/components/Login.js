@@ -29,22 +29,6 @@ function Login(props) {
 
   const {push} = useHistory();
 
-  /*const loginNewUsers = (newUser) => {
-    console.log(newUser);
-    axios
-      .post("https://watermyplants26.herokuapp.com/api/auth/login", newUser)
-      .then((res) => {
-        console.log(res);
-
-        setUsers([res.data, ...users]);
-        setFormValues(initialFormValues);
-        history.push("/plants");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };*/
-
   //// FORM ACTIONS/////////
 
   const onInputChange = (event) => {
