@@ -6,19 +6,19 @@ import Signup from "./components/Signup";
 import Plants from "./components/Plants";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
-
+import {NavBar} from './components/Login.style'
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <nav>
+      <NavBar>
         <Link to="/plants">Plants</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/" onClick={() => localStorage.removeItem}>
           Logout
         </Link>
-      </nav>
+      </NavBar>
       <Switch>
         <Route exact path="/">
           <Login />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import ProfileForm from "./ProfileForm";
 import { connect } from "react-redux";
+import{ ProfileWrapper, ProfileDisplay} from './Profile.style'
 
 function Profile(props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,15 +16,15 @@ function Profile(props) {
   };
 
   return (
-    <div className="profile-wrapper">
+    <ProfileWrapper>
       {!isEditing && (
-        <div className="profile-display">
+        <ProfileDisplay>
           <h3>{props.user.username}</h3>
           <p>{props.user.number}</p>
           <button className="edit-profile-button" onClick={onEditClick}>
             Edit Profile
           </button>
-        </div>
+        </ProfileDisplay>
       )}
       {isEditing && (
         <ProfileForm
@@ -32,7 +33,7 @@ function Profile(props) {
           user={{ number: props.user.number, password: props.user.password }}
         />
       )}
-    </div>
+    </ProfileWrapper>
   );
 }
 

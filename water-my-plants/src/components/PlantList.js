@@ -9,6 +9,7 @@ const PlantList = (props) => {
     props.fetchPlants();
   }, []);
 
+
   return (
     <div className="plant-list-wrapper">
       {props.plants.length > 0 &&

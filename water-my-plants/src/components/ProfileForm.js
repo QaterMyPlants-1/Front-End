@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { updateUser } from "../actions/actions";
+import {FormContainer, FormGroup} from './Global.style'
 
 function ProfileForm(props) {
   const [formState, setFormState] = useState(props.isEditing ? props.user : {});
@@ -19,8 +20,8 @@ function ProfileForm(props) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <FormContainer>
+      <FormGroup onSubmit={handleSubmit}>
         <label htmlFor="number">Phone Number:</label>
         <input
           id="number"
@@ -37,8 +38,8 @@ function ProfileForm(props) {
           onChange={handleChanges}
         />
         <button type="submit">Save Changes</button>
-      </form>
-    </div>
+      </FormGroup>
+    </FormContainer>
   );
 }
 
