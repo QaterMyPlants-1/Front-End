@@ -5,11 +5,10 @@ import { FormContainer, FormGroup, Footer } from "./Global.style";
 import { PlantFormWrapper } from './PlantForm.style';
 
 const initialFormState = {
-  //id: 0, //how to increment? server side?
   name: "",
   species: "",
-  h2oFrequency: "", //how to implement?
-  image: "", //optional
+  h2oFrequency: "",
+  image: "",
 };
 
 const PlantForm = (props) => {
@@ -23,8 +22,6 @@ const PlantForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // validation here
-
     if (formState.name !== "" && formState.species !== "" && formState.h2oFrequency !== "") {
       setFormError(false);
       if (props.isEditing) {
@@ -34,7 +31,7 @@ const PlantForm = (props) => {
         props.addPlant(formState);
       }
   
-      setFormState(initialFormState); // reset form state if successful
+      setFormState(initialFormState);
     }
     else {
       setFormError(true);
