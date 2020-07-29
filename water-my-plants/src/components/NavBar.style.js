@@ -9,7 +9,7 @@ export const NavBar = styled.nav`
   a {
     color: white;
     text-decoration: none;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-family: "Playfair Display", "Open Sans Condensed";
   }
   a:hover {

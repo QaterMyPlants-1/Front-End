@@ -19,7 +19,7 @@ export const FormGroup = styled.div`
     height: 40px;
     padding: 0px 10px;
     font-size: 1rem;
-    font-family: "Open Sans Consensed", sans-serif;
+    font-family: "Playfair Display", "Open Sans Consensed", sans-serif;
     background-color: #f3f3f3;
     border: 0;
     border-radius: 4px;

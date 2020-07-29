@@ -5,6 +5,8 @@ export const PlantFormWrapper = styled.form`
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
+ 
+
 
   input {
     margin-top: 9px;
@@ -12,7 +14,7 @@ export const PlantFormWrapper = styled.form`
     height: 40px;
     padding: 0px 10px;
     font-size: 1rem;
-    font-family: "Open Sans Condensed", sans-serif;
+    font-family: "Playfair Display", "Open Sans Condensed", sans-serif;
     background-color: #f3f3f3;
     border: 0;
     border-radius: 4px;
@@ -44,8 +46,8 @@ export const Button = styled.button`
   margin: 1%;
   padding: 5px 20px;
   border: 0;
-  background-color: #757C57;
-  color: #FFF9EF;
+  background-color: #757c57;
+  color: #fff9ef;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
 `;
