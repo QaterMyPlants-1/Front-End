@@ -28,22 +28,18 @@ export const DELETE_PLANT_FAILURE = "DELETE_PLANT_FAILURE";
 
 // Action Creators
 
-
 export const loginUser = (user) => {
   return (dispatch) => {
-    console.log('anything');
     dispatch({ type: LOGIN_USER_START });
     return axiosWithAuth()
-          .post("/auth/login", user)
-          .then((response) => {
-            localStorage.setItem("token", response.data.token);
-            dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.user });
-            
-          })
-          .catch((error) => {
-            console.log(error);
-            dispatch({ type: LOGIN_USER_FAILURE, payload: error.message });
-          });
+      .post("/auth/login", user)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data.user });
+      })
+      .catch((error) => {
+        dispatch({ type: LOGIN_USER_FAILURE, payload: error.message });
+      });
   };
 };
 
@@ -60,10 +56,10 @@ export const fetchUser = (user) => {
     axiosWithAuth()
       .get(`/users/${user.id}`)
       .then((response) => {
-        console.log(response);
+        dispatch({ type: FETCH_USER_SUCCESS, payload: response.data.user });
       })
       .catch((error) => {
-        console.log(error);
+        dispatch({ type: FETCH_USER_FAILURE, payload: error.message });
       });
   };
 };
@@ -71,15 +67,17 @@ export const fetchUser = (user) => {
 export const updateUser = (user) => {
   return (dispatch) => {
     dispatch({ type: UPDATE_USER_START });
-     axiosWithAuth()
-       .put(`/users/${user.id}`, user)
-       .then((response) => {
-         dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data.updatedUser });
-       })
-       .catch((error) => {
-         console.log(error);
-         dispatch({ type: UPDATE_USER_FAILURE, payload: error.message });
-       });
+    axiosWithAuth()
+      .put(`/users/${user.id}`, user)
+      .then((response) => {
+        dispatch({
+          type: UPDATE_USER_SUCCESS,
+          payload: response.data.updatedUser,
+        });
+      })
+      .catch((error) => {
+        dispatch({ type: UPDATE_USER_FAILURE, payload: error.message });
+      });
   };
 };
 

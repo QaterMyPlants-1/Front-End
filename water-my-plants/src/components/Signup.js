@@ -18,11 +18,9 @@ const intitalFormErrors = {
   number: "",
 };
 
-const initialSignUp = [];
 const initialDisabled = true;
 
 export default function Signup() {
-  const [register, setRegister] = useState(initialSignUp);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [formErrors, setFormErrors] = useState(intitalFormErrors);
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -33,7 +31,6 @@ export default function Signup() {
     axios
       .post("https://watermyplants26.herokuapp.com/api/auth/register", newForm)
       .then((res) => {
-        setRegister([res.data, ...register]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {

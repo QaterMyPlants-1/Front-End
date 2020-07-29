@@ -17,7 +17,6 @@ const intitalFormErrors = {
   password: "",
 };
 
-const initialUsers = [];
 const initialDisabled = true;
 
 function Login(props) {
@@ -62,9 +61,8 @@ function Login(props) {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    
-    props.loginUser(newUser)
-    .then(response => push('/plants'));
+
+    props.loginUser(newUser).then((response) => push("/plants"));
   };
 
   useEffect(() => {
