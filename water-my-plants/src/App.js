@@ -11,7 +11,7 @@ import Signup from "./components/Signup";
 import Plants from "./components/Plants";
 import Profile from "./components/Profile";
 import PrivateRoute from "./components/PrivateRoute";
-import { NavBar } from './components/NavBar.style'
+import { NavBar, HeaderTitleTop, HeaderTitleBottom, HeaderTitleWrapper } from './components/NavBar.style'
 import "./App.css";
 
 function App(props) {
@@ -19,6 +19,11 @@ function App(props) {
   <Router>
     <div className="App">
       <NavBar>
+        <HeaderTitleWrapper>
+          <HeaderTitleTop>WATER MY</HeaderTitleTop>
+          <HeaderTitleBottom>PLANTS</HeaderTitleBottom>
+        </HeaderTitleWrapper>
+        
         {props.isLoggedIn && <Link to="/plants">Plants</Link>}
         {props.isLoggedIn && <Link to="/profile">Profile</Link>}
         {props.isLoggedIn && (
@@ -32,7 +37,7 @@ function App(props) {
         <Route exact path="/">
           <Login />
         </Route>
-        <Route path="/signup">
+        <Route exact path="/signup">
           <Signup />
         </Route>
         <Route path="/login">
