@@ -40,6 +40,7 @@ export const FormGroup = styled.div`
 export const Footer = styled.div`
   width: 100%;
   margin-top: 1rem;
+  padding-bottom: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
