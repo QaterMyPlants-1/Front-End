@@ -24,14 +24,14 @@ function App(props) {
           <HeaderTitleBottom>PLANTS</HeaderTitleBottom>
         </HeaderTitleWrapper>
         
-        {props.isLoggedIn && <Link to="/plants">Plants</Link>}
-        {props.isLoggedIn && <Link to="/profile">Profile</Link>}
-        {props.isLoggedIn && (
-          <Link to="/" onClick={props.logoutUser}>
+        {localStorage.getItem("token") && <Link to="/plants">Plants</Link>}
+        {localStorage.getItem("token") && <Link to="/profile">Profile</Link>}
+        {localStorage.getItem("token") && (
+          <Link to="/" onClick={async () => {await props.logoutUser();}}>
             Logout
           </Link>
         )}
-        {!props.isLoggedIn && <Link to="/login">Login</Link>}
+        {!localStorage.getItem("token") && <Link to="/login">Login</Link>}
       </NavBar>
       <Switch>
         <Route exact path="/">
